@@ -1,10 +1,13 @@
 package com.bjtu.al.summerschool;
 
+import android.content.Context;
+import android.media.Image;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.media.MediaRecorder;
@@ -23,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mPlayButton = null;
     private MediaPlayer mPlayer = null;
 
-    // saves State
-    boolean mStartRecording = true;
     boolean mStartPlaying = true;
+    boolean mStartRecording = true;
+
 
     private void onRecord(boolean start) {
         if (start) {
@@ -61,10 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void startRecording() {
         mRecorder = new MediaRecorder();
+        mRecorder.reset();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         mRecorder.setOutputFile(mFileName);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 
         try {
             mRecorder.prepare();
@@ -81,38 +85,96 @@ public class MainActivity extends AppCompatActivity {
         mRecorder = null;
     }
 
+    class RecordButton extends ImageButton {
+        boolean mStartRecording = true;
+
+        OnClickListener clicker = new OnClickListener() {
+            public void onClick(View v) {
+                onRecord(mStartRecording);
+                String showString = "";
+                if (mStartRecording) {
+                    showString = "Started recording";
+                } else {
+                    showString = "Stopped recording";
+                }
+                mStartRecording = !mStartRecording;
+
+                Toast.makeText(MainActivity.this, showString, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        public RecordButton(Context ctx) {
+            super(ctx);
+            //setText("Start recording");
+            Toast.makeText(MainActivity.this, "Stopped", Toast.LENGTH_SHORT).show();
+            setOnClickListener(clicker);
+        }
+    }
+
+    class PlayButton extends ImageButton {
+        boolean mStartPlaying = true;
+
+        OnClickListener clicker = new OnClickListener() {
+            public void onClick(View v) {
+                onPlay(mStartPlaying);
+                String showString = "";
+                if (mStartPlaying) {
+                    showString = "Started playing";
+                } else {
+                    showString = "Stropped playing";
+                }
+                mStartPlaying = !mStartPlaying;
+
+                Toast.makeText(MainActivity.this, showString, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        public PlayButton(Context ctx) {
+            super(ctx);
+            //setText("Start playing");
+            Toast.makeText(MainActivity.this, "Stopped", Toast.LENGTH_SHORT).show();
+            setOnClickListener(clicker);
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ImageButton imageButton;
+        ImageButton imageButton1;
+        ImageButton imageButton2;
+
+
+        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+        mFileName += "/audiorecordtest.aac";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
         // record button
-        imageButton = (ImageButton) findViewById(R.id.recordButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        imageButton1 = (ImageButton) findViewById(R.id.recordButton);
+        imageButton1.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View arg0) {
                 String showString = "Record button is clicked!";
                 onRecord(mStartRecording);
                 if (mStartRecording) {
-                    showString = "Stop recording";
+                    showString = ("Stop recording");
                 } else {
-                    showString = "Start recording";
+                    showString = ("Start recording");
                 }
                 mStartRecording = !mStartRecording;
 
                 Toast.makeText(MainActivity.this, showString, Toast.LENGTH_SHORT).show();
-
             }
 
         });
 
         // play button
-        imageButton = (ImageButton) findViewById(R.id.playButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        imageButton2 = (ImageButton) findViewById(R.id.playButton);
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View arg0) {
                 String showString = "Record button is clicked!";
