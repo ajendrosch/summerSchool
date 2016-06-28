@@ -4,6 +4,10 @@
         "source": "/home/al/Projekte/summerSchool/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },
     {
+        "merged": "/home/al/Projekte/summerSchool/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/play.png",
+        "source": "/home/al/Projekte/summerSchool/app/src/main/res/mipmap-xhdpi/play.png"
+    },
+    {
         "merged": "/home/al/Projekte/summerSchool/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/record.png",
         "source": "/home/al/Projekte/summerSchool/app/src/main/res/mipmap-xhdpi/record.png"
     }
