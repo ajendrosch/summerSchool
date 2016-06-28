@@ -1,5 +1,5 @@
 # SoundRecording App
-[![Build Status](https://travis-ci.org/travis-ci-examples/php.svg?branch=master)](https://travis-ci.org/travis-ci-examples/php)
+[![Build Status](https://api.travis-ci.org/ajendrosch/summerSchool.svg)](https://api.travis-ci.org/ajendrosch/summerSchool)
 SoundRecording App for the BJTU summer school. Using Travis CI.
 ## Members
 * Alex
