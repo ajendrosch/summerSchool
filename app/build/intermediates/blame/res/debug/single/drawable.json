@@ -84,6 +84,10 @@
         "source": "/home/al/Projekte/summerSchool/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_seekbar_thumb_material.xml"
     },
     {
+        "merged": "/home/al/Projekte/summerSchool/app/build/intermediates/res/merged/debug/drawable/buttonstate.xml",
+        "source": "/home/al/Projekte/summerSchool/app/src/main/res/drawable/buttonstate.xml"
+    },
+    {
         "merged": "/home/al/Projekte/summerSchool/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
         "source": "/home/al/Projekte/summerSchool/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_colored_material.xml"
     },
