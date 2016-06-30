@@ -1,6 +1,7 @@
 package com.bjtu.al.summerschool;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,8 @@ import android.media.MediaRecorder;
 import android.media.MediaPlayer;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -144,8 +147,9 @@ public class MainActivity extends AppCompatActivity {
         ImageButton imageButton2;
 
 
-        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-        mFileName += "/audiorecordtest.aac";
+        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Recordings" ;
+        String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        mFileName += date + ".aac";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -153,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
         // record button
         imageButton1 = (ImageButton) findViewById(R.id.recordButton);
-        imageButton1.setOnClickListener(new View.OnClickListener() {
+        /* imageButton1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -167,6 +171,15 @@ public class MainActivity extends AppCompatActivity {
                 mStartRecording = !mStartRecording;
 
                 Toast.makeText(MainActivity.this, showString, Toast.LENGTH_SHORT).show();
+            }
+
+        });*/
+        imageButton1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(MainActivity.this, FileActivity.class);
+                startActivity(intent);
             }
 
         });
